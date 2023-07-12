@@ -1,0 +1,40 @@
+/* reset preset browser */
+*{ 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+    
+/* RESET LISTA - PALLINI CHE RIENTRANO NEL MAIN CENTRATO */
+li{
+     margin-left: 1em;
+}
+    
+/* RESET TABELLA - LINEE TRA COLONNE */
+table{
+    border-spacing: 0;
+}
+    
+/* PER NON INTERROMPERE IL FLUSSO CON FLOAT */
+.clearfix::after{
+     content: "";
+     clear: both;
+     display: table;
+}
+
+ul li {
+    list-style-type: none;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+ul {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+h1, h2, h3, h4 {
+    margin: 0 !important;
+    padding: 0 !important;
+}
