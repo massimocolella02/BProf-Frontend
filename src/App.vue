@@ -1,5 +1,7 @@
 <template>
-  <h1>App</h1>
+
+    <h1>App</h1>
+
 
   <router-view></router-view>
 </template>
@@ -21,4 +23,5 @@ export default {
 }
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+</style>
