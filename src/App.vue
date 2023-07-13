@@ -1,9 +1,5 @@
 <template>
-
-    <h1>App</h1>
-
-
-  <router-view></router-view>
+    <h1 class="text-danger">Ciao</h1>
 </template>
 
 <script>
@@ -24,4 +20,5 @@ export default {
 </script>
 
 <style lang="scss">
+
 </style>
