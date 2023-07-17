@@ -1,10 +1,11 @@
 <template>
-    <h1 class="text-danger">Ciao</h1>
+  <NavBarComp/>
 </template>
 
 <script>
-import { store } from "./storing/store"
+import { store } from "./storing/store";
 import HomeView from './components/views/HomeView.vue';
+import NavBarComp from "./components/NavBarComp.vue";
 
 export default {
   name: "App",
@@ -14,7 +15,8 @@ export default {
     }
   },
   components: {
-    HomeView
+    HomeView,
+    NavBarComp
   }
 }
 </script>
