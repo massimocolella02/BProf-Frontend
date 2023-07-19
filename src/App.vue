@@ -1,6 +1,7 @@
 <template>
   <NavBarComp/>
   <HeroComp/>
+  <CategoryComp/>
   <TeacherSection/>
 </template>
 
@@ -10,6 +11,7 @@ import HomeView from './components/views/HomeView.vue';
 import NavBarComp from "./components/NavBarComp.vue";
 import HeroComp from "./components/HeroComp.vue";
 import TeacherSection from "./components/TeacherSection.vue";
+import CategoryComp from "./components/CategoryComp.vue";
 
 export default {
   name: "App",
@@ -22,7 +24,8 @@ export default {
     HomeView,
     NavBarComp,
     HeroComp,
-    TeacherSection
+    TeacherSection,
+    CategoryComp
   }
 }
 </script>

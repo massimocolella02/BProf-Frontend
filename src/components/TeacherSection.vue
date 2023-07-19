@@ -1,5 +1,5 @@
 <template>
-    <div class="container my-2">
+    <div class="container my-4">
         <h2 class="text-center">Teachers</h2>
         <SingleCardComp/>
     </div>
