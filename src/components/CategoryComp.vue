@@ -19,7 +19,7 @@ export default {
     },
     methods: {
         callSubjects(){
-            axios.get('http://127.0.0.1:8000/api/teachers').then( res => {
+            axios.get('http://127.0.0.1:8000/api/subjects').then( res => {
                 this.subjects = res.data.results;
             })
         }
