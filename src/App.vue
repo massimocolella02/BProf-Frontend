@@ -31,7 +31,13 @@ export default {
   methods: {
     callTeachersApi(){
 
-      axios.get('http://127.0.0.1:8000/api/teachers')
+      const params = {}
+
+      if (store.selectedSubject !== 'all') {
+        params.subject_id = store.selectedSubject
+      }
+
+      axios.get('http://127.0.0.1:8000/api/teachers', {params})
       .then(res => {
         console.log(res.data.results)
       })
