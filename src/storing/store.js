@@ -2,6 +2,7 @@ import { reactive } from "vue";
 
 export const store = reactive({
     teachers: [],
-    selectedSubject: 'all',
+    selectedSubject: null,
+    selectedRate: null,
     infoTeachers: []
 })

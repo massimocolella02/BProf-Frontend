@@ -33,7 +33,7 @@ export default {
 
       const params = {}
 
-      if (store.selectedSubject !== 'all') {
+      if (store.selectedSubject !== null) {
         params.subject_id = store.selectedSubject
       }
 
