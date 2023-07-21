@@ -40,12 +40,16 @@ export default {
       axios.get('http://127.0.0.1:8000/api/teachers', {params})
       .then(res => {
         console.log(res.data.results)
+        store.infoTeachers = res.data.results
       })
       .catch(function (error) {
             console.error(error);
       });
     }
   },
+  mounted() {
+    this.callTeachersApi()
+  }, 
 }
 </script>
 
