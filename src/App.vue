@@ -1,7 +1,7 @@
 <template>
   <NavBarComp/>
   <HeroComp/>
-  <CategoryComp/>
+  <CategoryComp @callTeachers="callTeachersApi"/>
   <TeacherSection/>
 </template>
 
@@ -12,6 +12,7 @@ import NavBarComp from "./components/NavBarComp.vue";
 import HeroComp from "./components/HeroComp.vue";
 import TeacherSection from "./components/TeacherSection.vue";
 import CategoryComp from "./components/CategoryComp.vue";
+import axios from "axios";
 
 export default {
   name: "App",
@@ -26,7 +27,19 @@ export default {
     HeroComp,
     TeacherSection,
     CategoryComp
-  }
+  },
+  methods: {
+    callTeachersApi(){
+
+      axios.get('http://127.0.0.1:8000/api/teachers')
+      .then(res => {
+        console.log(res.data.results)
+      })
+      .catch(function (error) {
+            console.error(error);
+      });
+    }
+  },
 }
 </script>
 
