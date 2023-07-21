@@ -4,7 +4,7 @@
         <div class="btn-group" role="group" aria-label="Vertical radio toggle button group" v-if="store.selectedSubject !== null">
             <input type="radio" class="btn-check d-inline-block" name="vbtn-radio" id="vbtn-radio1" autocomplete="off" @click="callTeachersApiFilterReviews">
             <label class="btn btn-outline-danger" for="vbtn-radio1">Numero recensioni più alto</label>
-            <input type="radio" class="btn-check d-inline-block" name="vbtn-radio" id="vbtn-radio2" autocomplete="off">
+            <input type="radio" class="btn-check d-inline-block" name="vbtn-radio" id="vbtn-radio2" autocomplete="off" @click="callTeachersApiFilterRate">
             <label class="btn btn-outline-danger" for="vbtn-radio2">Voto più alto</label>
             <input type="radio" class="btn-check d-inline-block" name="vbtn-radio" id="vbtn-radio3" @click="$emit('callApi')">
             <label class="btn btn-outline-danger" for="vbtn-radio3">X</label>
@@ -41,6 +41,23 @@ export default {
             }
 
             axios.get('http://127.0.0.1:8000/api/filtereviews', {params})
+            .then(res => {
+            console.log(res.data.results)
+            store.infoTeachers = res.data.results
+            })
+            .catch(function (error) {
+                console.error(error);
+            });
+        },
+        callTeachersApiFilterRate(){
+
+            const params = {}
+
+            if (store.selectedSubject !== null) {
+                params.subject_id = store.selectedSubject
+            }
+
+            axios.get('http://127.0.0.1:8000/api/filterate', {params})
             .then(res => {
             console.log(res.data.results)
             store.infoTeachers = res.data.results
