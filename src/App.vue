@@ -2,7 +2,7 @@
   <NavBarComp/>
   <HeroComp/>
   <CategoryComp @callTeachers="callTeachersApi"/>
-  <TeacherSection/>
+  <TeacherSection @callApi="callTeachersApi"/>
 </template>
 
 <script>
