@@ -33,8 +33,16 @@ export default {
 
       const params = {}
 
-      if (store.selectedSubject !== null) {
+      if (store.selectedSubject !== null && store.sortBy == null ) {
         params.subject_id = store.selectedSubject
+
+      }else if( store.selectedSubject !== null && store.sortBy == 'reviews' ){
+        params.subject_id = store.selectedSubject
+        params.sort = store.sortBy
+        
+      }else if( store.selectedSubject !== null && store.sortBy == 'rating' ){
+        params.subject_id = store.selectedSubject
+        params.sort = store.sortBy
       }
 
       axios.get('http://127.0.0.1:8000/api/teachers', {params})
