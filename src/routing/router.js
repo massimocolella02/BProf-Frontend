@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../components/views/HomeView.vue';
 import TeacherSection from '../components/views/TeacherSection.vue';
+import SingleTeacher from '../components/views/SingleTeacher.vue';
 
 const routes = [
     {
@@ -13,7 +14,13 @@ const routes = [
         path: '/teachers',
         name: 'Teacher',
         component: TeacherSection,
-        meta: { title: "Teachers" }
+        meta: { title: "BProf - Teachers" }
+    },
+    {
+        path: '/teachers/:id',
+        name: 'single-teacher',
+        component: SingleTeacher,
+        meta: { title: "BProf - Teacher" }
     },
 ];
 
