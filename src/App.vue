@@ -2,7 +2,7 @@
   <NavBarComp/>
   <HeroComp/>
   <CategoryComp @callTeachers="callTeachersApi"/>
-  <TeacherSection @callApi="callTeachersApi"/>
+  <TeacherSection @callApi="callTeachersApi" v-if="store.selectedSubject !== null"/>
 </template>
 
 <script>
