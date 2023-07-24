@@ -4,5 +4,5 @@ export const store = reactive({
     teachers: [],
     selectedSubject: null,
     sortBy: 'reviews',
-    infoTeachers: []
+    infoTeachers: [],
 })
