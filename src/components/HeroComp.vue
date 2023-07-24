@@ -1,24 +1,53 @@
 <template>
-    <div class="container-fluid">
-        <div class="swiper mySwiper">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide" v-for="(elem, index) in 4" :key="index">
-                    <img src="/img/black/bprof_logo_black.png" alt="">
-                </div>
-            </div>
-            <div class="swiper-pagination"></div>
-        </div>
-    </div>
+    <swiper
+        :slidesPerView="1"
+        :spaceBetween="10"
+        :pagination="{
+        clickable: true,
+        }"
+        :breakpoints="{
+        '480': {
+            slidesPerView: 1,
+            spaceBetween: 10,
+        },
+        '640': {
+            slidesPerView: 2,
+            spaceBetween: 20,
+        },
+        '768': {
+            slidesPerView: 3,
+            spaceBetween: 40,
+        },
+        }"
+        :modules="modules"
+        class="mySwiper"
+    >
+        <swiper-slide v-for="(elem, index) in 4" :key="index">
+            <img src="/img/black/bprof_logo_black.png" alt="">
+        </swiper-slide>
+    </swiper>
 </template>
 <script>
-export default {
+import { Swiper, SwiperSlide } from 'swiper/vue';
+
+  import 'swiper/css';
+
+  import 'swiper/css/pagination';
+
+  import { Pagination } from 'swiper/modules';
+
+  export default {
     name: 'HeroComp',
-    data() {
-        return {
-            
-        }
+    components: {
+      Swiper,
+      SwiperSlide,
     },
-}
+    setup() {
+      return {
+        modules: [Pagination],
+      };
+    },
+  };
 </script>
 <style lang="scss">
     .swiper {

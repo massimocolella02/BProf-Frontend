@@ -1,67 +1,19 @@
 <template>
   <NavBarComp/>
-  <HeroComp/>
-  <CategoryComp @callTeachers="callTeachersApi"/>
-  <TeacherSection @callApi="callTeachersApi" v-if="store.selectedSubject !== null"/>
+  <router-view></router-view>
 </template>
 
 <script>
-import { store } from "./storing/store";
-import HomeView from './components/views/HomeView.vue';
-import NavBarComp from "./components/NavBarComp.vue";
-import HeroComp from "./components/HeroComp.vue";
-import TeacherSection from "./components/TeacherSection.vue";
-import CategoryComp from "./components/CategoryComp.vue";
-import axios from "axios";
-
+import NavBarComp from './components/NavBarComp.vue'
 export default {
   name: "App",
   data() {
     return {
-      store
     }
   },
   components: {
-    HomeView,
     NavBarComp,
-    HeroComp,
-    TeacherSection,
-    CategoryComp
   },
-  methods: {
-    callTeachersApi(){
-
-      if (store.selectedSubject !== null) {
-        
-        const params = {}
-  
-        if (store.selectedSubject !== null && store.sortBy == null ) {
-          params.subject_id = store.selectedSubject
-  
-        }else if( store.selectedSubject !== null && store.sortBy == 'reviews' ){
-          params.subject_id = store.selectedSubject
-          params.sort = store.sortBy
-          
-        }else if( store.selectedSubject !== null && store.sortBy == 'rating' ){
-          params.subject_id = store.selectedSubject
-          params.sort = store.sortBy
-        }
-  
-        axios.get('http://127.0.0.1:8000/api/teachers', {params})
-        .then(res => {
-          console.log(res.data.results)
-          store.infoTeachers = res.data.results
-        })
-        .catch(function (error) {
-              console.error(error);
-        });
-      }
-
-    }
-  },
-  mounted() {
-    this.callTeachersApi()
-  }, 
 }
 </script>
 

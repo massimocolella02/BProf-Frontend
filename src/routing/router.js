@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../components/views/HomeView.vue';
+import TeacherSection from '../components/views/TeacherSection.vue';
 
 const routes = [
     {
@@ -7,6 +8,12 @@ const routes = [
         name: 'Home',
         component: HomeView,
         meta: { title: "BProf - Home" }
+    },
+    {
+        path: '/teachers',
+        name: 'Teacher',
+        component: TeacherSection,
+        meta: { title: "Teachers" }
     },
 ];
 

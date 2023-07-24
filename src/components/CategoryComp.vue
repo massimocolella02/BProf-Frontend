@@ -3,7 +3,7 @@
         <h2 class="text-center">Categorie</h2>
         <div class="row m-auto justify-content-center">
             <div class="">
-                <button type="button" class="btn btn-success me-2 my-1" v-for="(elem, index) in subjects" :key="index" @click="changeSub(elem.id); $emit('callTeachers')">{{ elem.name }}</button>
+                <router-link to="teachers" class="btn btn-success me-2 my-1" v-for="(elem, index) in subjects" :key="index" @click="changeSub(elem.id)">{{ elem.name }}</router-link>
             </div>
         </div>
     </div>
