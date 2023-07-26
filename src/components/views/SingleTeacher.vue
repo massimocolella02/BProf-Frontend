@@ -24,7 +24,8 @@
                 <p class="card-text"> Indirizzo: {{ elem.address }}</p>
                 <a v-if="elem.cv !== null" class="text-decoration-none" target="_blank" :href="`http://127.0.0.1:8000/storage/${elem.cv}`">Guarda Curriculum Vitae</a>
                 <p class="card-text" v-if="elem.cv === null"> Nessun Curriculum Vitae disponibile</p>
-                <p class="card-text"> Tariffa oraria: {{ elem.price }} € </p>
+                <p class="card-text" v-if="elem.price == 0"> Gratis </p>
+                <p class="card-text" v-if="elem.price != 0"> Tariffa oraria: {{ elem.price }} €</p>
                 <p class="card-text" v-if="elem.remote === 1"> Disponibile per lezioni in remoto</p>
                 <p class="card-text" v-if="elem.remote === 0"> Non disponibile per lezioni in remoto</p>
             </div>
