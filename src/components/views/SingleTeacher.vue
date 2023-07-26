@@ -1,10 +1,10 @@
 <template>
     <div class="container-fluid">
         <div class="card" v-for="(elem, index) in teacher" :key="index" style="width: 18rem;">
-            <p class="card-text" v-if="elem.profile_picture !== null"> <img :src="elem.profile_picture" class="card-img-top" :alt="elem.user.name"></p>
+            <img v-if="elem.profile_picture !== null" :src="elem.profile_picture" class="card-img-top" :alt="elem.user.name">
             <p class="card-text" v-if="elem.profile_picture === null"> Nessun immagine profilo disponibile</p>
             <div class="card-body">
-                <p class="card-title">Nome e Cognome: {{ elem.name }}</p>
+                <p class="card-title"> {{ elem.user.name }} {{ elem.user.surname }} </p>
                 
                 
                 <div class="mb-3 subl">
