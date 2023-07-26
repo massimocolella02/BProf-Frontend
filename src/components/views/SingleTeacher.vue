@@ -36,7 +36,9 @@
               <div v-for="(review, index) in reviews" :key="index" class="card mt-2">
                 <div class="card-body">
                   <h5 class="card-title">Recensione {{ index + 1 }}</h5>
+                  <p class="card-text">Ospite: {{ review.guest_name }}</p>
                   <p class="card-text">Descrizione: {{ review.description }}</p>
+                  <p class="card-text">Voto: {{ review.rate }}</p>
                 </div>
               </div>
             </div>
@@ -44,6 +46,7 @@
               <p>Non ci sono recensioni disponibili per questo insegnante.</p>
             </div>
         </div>
+
         <SendMessageComp :idTeacher="$route.params.id"/>
     </div>
 </template>
@@ -60,7 +63,8 @@ export default {
     },
     data() {
         return {
-            teacher: []
+            teacher: [],
+            reviews: []
         }
     },
     mounted() {
