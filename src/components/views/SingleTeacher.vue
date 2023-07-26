@@ -1,8 +1,8 @@
 <template>
     <div class="container-fluid">
         <div class="card" v-for="(elem, index) in teacher" :key="index" style="width: 18rem;">
-            <img v-if="elem.profile_picture !== null" :src="elem.profile_picture" class="card-img-top" :alt="elem.user.name">
-            <p class="card-text" v-if="elem.profile_picture === null"> Nessun immagine profilo disponibile</p>
+            <img v-if="elem.profile_picture !== null" :src="`http://127.0.0.1:8000/storage/${elem.profile_picture}`" class="card-img-top" :alt="elem.user.name">
+            <img v-if="elem.profile_picture === null" src="../../assets/img/pp.jpg" class="card-img-top" alt="default profile picture">
             <div class="card-body">
                 <p class="card-title"> {{ elem.user.name }} {{ elem.user.surname }} </p>
                 
@@ -22,7 +22,7 @@
                 <p class="card-text"> Città: {{ elem.city }}</p>
                 <p class="card-text"> CAP: {{ elem.cap }}</p>
                 <p class="card-text"> Indirizzo: {{ elem.address }}</p>
-                <p class="card-text" v-if="elem.cv !== null"> Guarda Curriculum Vitae</p>
+                <a v-if="elem.cv !== null" class="text-decoration-none" :href="elem.cv">Guarda Curriculum Vitae</a>
                 <p class="card-text" v-if="elem.cv === null"> Nessun Curriculum Vitae disponibile</p>
                 <p class="card-text"> Tariffa oraria: {{ elem.price }} € </p>
                 <p class="card-text" v-if="elem.remote === 1"> Disponibile per lezioni in remoto</p>
