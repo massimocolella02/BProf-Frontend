@@ -30,7 +30,6 @@
             </div>
 
         </div>
-
         <div class="mt-4">
             <h3>Recensioni</h3>
             <div v-if="reviews && reviews.length > 0">
@@ -45,7 +44,6 @@
               <p>Non ci sono recensioni disponibili per questo insegnante.</p>
             </div>
         </div>
-        
         <SendMessageComp :idTeacher="$route.params.id"/>
     </div>
 </template>
