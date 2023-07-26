@@ -28,7 +28,24 @@
                 <p class="card-text" v-if="elem.remote === 1"> Disponibile per lezioni in remoto</p>
                 <p class="card-text" v-if="elem.remote === 0"> Non disponibile per lezioni in remoto</p>
             </div>
+
         </div>
+
+        <div class="mt-4">
+            <h3>Recensioni</h3>
+            <div v-if="reviews && reviews.length > 0">
+              <div v-for="(review, index) in reviews" :key="index" class="card mt-2">
+                <div class="card-body">
+                  <h5 class="card-title">Recensione {{ index + 1 }}</h5>
+                  <p class="card-text">Descrizione: {{ review.description }}</p>
+                </div>
+              </div>
+            </div>
+            <div v-else>
+              <p>Non ci sono recensioni disponibili per questo insegnante.</p>
+            </div>
+        </div>
+        
         <SendMessageComp :idTeacher="$route.params.id"/>
     </div>
 </template>
@@ -49,19 +66,27 @@ export default {
         }
     },
     mounted() {
-        this.callApiSingleTeacher()
+        this.callApiSingleTeacher();
+
     },
     methods: {
-        callApiSingleTeacher(){
 
-            axios.get(`http://127.0.0.1:8000/api/teachers/${this.$route.params.id}`)
-                .then(res => {
-                    this.teacher = res.data.results
-                    console.log(this.teacher)
-                })
-                .catch(function (error) {
+        callApiSingleTeacher() {
+        axios.get(`http://127.0.0.1:8000/api/teachers/${this.$route.params.id}`)
+            .then(res => {
+                this.teacher = res.data.results;
+                // Chiamata API per ottenere le recensioni dell'insegnante
+                axios.get(`http://127.0.0.1:8000/api/teachers/${this.$route.params.id}/reviews`)
+                    .then(res => {
+                        this.reviews = res.data.results;
+                    })
+                    .catch(function (error) {
                         console.error(error);
-                });
+                    });
+            })
+            .catch(function (error) {
+                console.error(error);
+            });
         }
 
     },
