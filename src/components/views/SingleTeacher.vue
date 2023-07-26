@@ -35,15 +35,14 @@
             <div v-if="reviews && reviews.length > 0">
               <div v-for="(review, index) in reviews" :key="index" class="card mt-2">
                 <div class="card-body">
-                  <h5 class="card-title">Recensione {{ index + 1 }}</h5>
-                  <p class="card-text">Ospite: {{ review.guest_name }}</p>
-                  <p class="card-text">Descrizione: {{ review.description }}</p>
+                  <p class="card-text">Utente: {{ review.guest_name }}</p>
+                  <p class="card-text">Recensione: {{ review.description }}</p>
                   <p class="card-text">Voto: {{ review.rate }}</p>
                 </div>
               </div>
             </div>
             <div v-else>
-              <p>Non ci sono recensioni disponibili per questo insegnante.</p>
+              <p> Non ci sono recensioni disponibili per questo insegnante.</p>
             </div>
         </div>
 
