@@ -5,16 +5,18 @@
             <p class="card-text" v-if="elem.profile_picture === null"> Nessun immagine profilo disponibile</p>
             <div class="card-body">
                 <p class="card-title">Nome e Cognome: {{ elem.name }}</p>
-                <div class="mb-3">Descrizione:
-                <p class="card-text">{{ elem.description }}</p>
-                </div>
+                
                 
                 <div class="mb-3 subl">
                     Materie:
-                <li class="list-inline" v-for="(materia, index) in elem.subjects" :key="index">
-                    <i class="fa-solid fa-laptop-code me-2"></i>
-                    {{ materia.name }}
-                </li>
+                    <li class="list-inline" v-for="(materia, index) in elem.subjects" :key="index">
+                        <i class="fa-solid fa-laptop-code me-2"></i>
+                        {{ materia.name }}
+                    </li>
+                </div>
+                
+                <div class="mb-3">Descrizione:
+                <p class="card-text">{{ elem.description }}</p>
                 </div>
 
                 <p class="card-text"> Città: {{ elem.city }}</p>
@@ -37,6 +39,7 @@ import axios from 'axios';
 
 export default {
     name: 'SingleTeacher',
+    props: ['detailsTeachers'],
     components: {
     SendMessageComp,
     },
