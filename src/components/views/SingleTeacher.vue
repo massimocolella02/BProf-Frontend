@@ -5,8 +5,20 @@
             <div class="card-body">
                 <h5 class="card-title">{{ elem.name }}</h5>
                 <p class="card-text">{{ elem.description }}</p>
-                <p class="card-text">Materie: <span v-for="(materia, index) in elem.subjects" :key="index">{{ materia.name }}/</span></p>
+                
+                <div class="mb-3 subl">
+                <li class="list-inline" v-for="(materia, index) in elem.subjects" :key="index">
+                    <i class="fa-solid fa-laptop-code me-2"></i>
+                    {{ materia.name }}
+                </li>
+                </div>
+
                 <p class="card-text">{{ elem.city }}</p>
+                <p class="card-text">{{ elem.cap }}</p>
+                <p class="card-text">{{ elem.address }}</p>
+                <p class="card-text">{{ elem.cv }}</p>
+                <p class="card-text">{{ elem.price }}</p>
+                <p class="card-text">{{ elem.remote }}</p>
             </div>
         </div>
         <SendMessageComp :idTeacher="$route.params.id"/>
@@ -49,4 +61,12 @@ export default {
 
 <style lang="scss">
     
+.subl li:nth-child(odd){
+    color: red;
+}
+
+.subl li:nth-child(even){
+    color: blue;
+}
+
 </style>
