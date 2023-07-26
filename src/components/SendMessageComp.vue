@@ -2,7 +2,7 @@
     <form @submit.prevent="getData()">
         <h2>Chiedi informazioni:</h2>
         <div class="mb-3">
-            <label for="name" class="form-label">Nome e Cognome*</label>
+            <label for="name" class="form-label">Nome*</label>
             <input type="text" class="form-control" id="name" aria-describedby="emailHelp" name="name" v-model="params.name">
         </div>
         <div class="mb-3">
@@ -22,7 +22,7 @@
     <form @submit.prevent="getDataReviews()">
         <h2>Lascia una recensione: </h2>
         <div class="mb-3">
-            <label for="name" class="form-label">Nome e Cognome*</label>
+            <label for="name" class="form-label">Nome*</label>
             <input type="text" class="form-control" id="name-1" aria-describedby="emailHelp" v-model="review.name">
         </div>
         <div class="mb-3">
