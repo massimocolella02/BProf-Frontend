@@ -1,41 +1,41 @@
 <template>
     <form @submit.prevent="getData()">
-        <h2>Invia un messaggio al professore!</h2>
+        <h2>Chiedi informazioni:</h2>
         <div class="mb-3">
-            <label for="name" class="form-label">Nome e cognome</label>
+            <label for="name" class="form-label">Nome e Cognome</label>
             <input type="text" class="form-control" id="name" aria-describedby="emailHelp" name="name" v-model="params.name">
         </div>
         <div class="mb-3">
-            <label for="email" class="form-label">Indirizzo email</label>
+            <label for="email" class="form-label">E-mail</label>
             <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" v-model="params.email">
         </div>
         <div class="mb-3">
-            <label for="message" class="form-label">Example textarea</label>
+            <label for="message" class="form-label">Descrizione:</label>
             <textarea class="form-control" id="message" rows="3" name="message" v-model="params.message"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Invia messaggio</button>
     </form>
 
 
     <form @submit.prevent="getDataReviews()">
-        <h2>Invia una recensione al professore!</h2>
+        <h2>Lascia una recensione: </h2>
         <div class="mb-3">
-            <label for="name" class="form-label">Nome e cognome</label>
+            <label for="name" class="form-label">Nome e Cognome</label>
             <input type="text" class="form-control" id="name-1" aria-describedby="emailHelp" v-model="review.name">
         </div>
         <div class="mb-3">
-            <label for="email" class="form-label">Indirizzo email</label>
+            <label for="email" class="form-label">E-mail</label>
             <input type="email" class="form-control" id="email-1" aria-describedby="emailHelp" v-model="review.email">
         </div>
         <div class="mb-3">
-            <label for="rate" class="form-label">Indirizzo email</label>
+            <label for="rate" class="form-label">Voto:</label>
             <input type="number" class="form-control" id="rate-1" aria-describedby="emailHelp" v-model="review.rate" min="0" max="5">
         </div>
         <div class="mb-3">
-            <label for="message" class="form-label">Example textarea</label>
+            <label for="message" class="form-label">Recensione:</label>
             <textarea class="form-control" id="message-1" rows="3" v-model="review.message"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Invia recensione</button>
     </form>
 </template>
 <script>
