@@ -21,7 +21,8 @@
                 <p class="card-text"> Indirizzo: {{ elem.address }}</p>
                 <p class="card-text"> CV: {{ elem.cv }}</p>
                 <p class="card-text"> Prezzo / ora: {{ elem.price }} € </p>
-                <p class="card-text"> Disponibile in remoto: {{ elem.remote }}</p>
+                <p class="card-text" v-if="elem.remote === 1"> Disponibile per lezioni in remoto</p>
+                <p class="card-text" v-if="elem.remote === 0"> Non disponibile per lezioni in remoto</p>
             </div>
         </div>
         <SendMessageComp :idTeacher="$route.params.id"/>
