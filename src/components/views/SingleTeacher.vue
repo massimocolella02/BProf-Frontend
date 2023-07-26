@@ -1,27 +1,32 @@
 <template>
     <div class="container-fluid">
         <div class="card" v-for="(elem, index) in teacher" :key="index" style="width: 18rem;">
-            <img :src="elem.profile_picture" class="card-img-top" :alt="elem.user.name">
+            <img v-if="elem.profile_picture !== null" :src="`http://127.0.0.1:8000/storage/${elem.profile_picture}`" class="card-img-top" :alt="elem.user.name">
+            <img v-if="elem.profile_picture === null" src="../../assets/img/pp.jpg" class="card-img-top" alt="default profile picture">
             <div class="card-body">
-                <p class="card-title">Nome e Cognome: {{ elem.name }}</p>
-                <div class="mb-3">Descrizione:
-                <p class="card-text">{{ elem.description }}</p>
-                </div>
+                <p class="card-title"> {{ elem.user.name }} {{ elem.user.surname }} </p>
+                
                 
                 <div class="mb-3 subl">
                     Materie:
-                <li class="list-inline" v-for="(materia, index) in elem.subjects" :key="index">
-                    <i class="fa-solid fa-laptop-code me-2"></i>
-                    {{ materia.name }}
-                </li>
+                    <li class="list-inline" v-for="(materia, index) in elem.subjects" :key="index">
+                        <i class="fa-solid fa-laptop-code me-2"></i>
+                        {{ materia.name }}
+                    </li>
+                </div>
+                
+                <div class="mb-3">Descrizione:
+                <p class="card-text">{{ elem.description }}</p>
                 </div>
 
                 <p class="card-text"> Città: {{ elem.city }}</p>
                 <p class="card-text"> CAP: {{ elem.cap }}</p>
                 <p class="card-text"> Indirizzo: {{ elem.address }}</p>
-                <p class="card-text"> CV: {{ elem.cv }}</p>
-                <p class="card-text"> Prezzo / ora: {{ elem.price }} € </p>
-                <p class="card-text"> Disponibile in remoto: {{ elem.remote }}</p>
+                <a v-if="elem.cv !== null" class="text-decoration-none" :href="elem.cv">Guarda Curriculum Vitae</a>
+                <p class="card-text" v-if="elem.cv === null"> Nessun Curriculum Vitae disponibile</p>
+                <p class="card-text"> Tariffa oraria: {{ elem.price }} € </p>
+                <p class="card-text" v-if="elem.remote === 1"> Disponibile per lezioni in remoto</p>
+                <p class="card-text" v-if="elem.remote === 0"> Non disponibile per lezioni in remoto</p>
             </div>
         </div>
         <SendMessageComp :idTeacher="$route.params.id"/>
@@ -34,6 +39,7 @@ import axios from 'axios';
 
 export default {
     name: 'SingleTeacher',
+    props: ['detailsTeachers'],
     components: {
     SendMessageComp,
     },
