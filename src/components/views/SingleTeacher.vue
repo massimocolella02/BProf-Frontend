@@ -19,8 +19,9 @@
                 <p class="card-text"> Città: {{ elem.city }}</p>
                 <p class="card-text"> CAP: {{ elem.cap }}</p>
                 <p class="card-text"> Indirizzo: {{ elem.address }}</p>
-                <p class="card-text"> CV: {{ elem.cv }}</p>
-                <p class="card-text"> Prezzo / ora: {{ elem.price }} € </p>
+                <p class="card-text" v-if="elem.cv !== null"> Guarda Curriculum Vitae</p>
+                <p class="card-text" v-if="elem.cv === null"> Nessun Curriculum Vitae disponibile</p>
+                <p class="card-text"> Tariffa oraria: {{ elem.price }} € </p>
                 <p class="card-text" v-if="elem.remote === 1"> Disponibile per lezioni in remoto</p>
                 <p class="card-text" v-if="elem.remote === 0"> Non disponibile per lezioni in remoto</p>
             </div>
