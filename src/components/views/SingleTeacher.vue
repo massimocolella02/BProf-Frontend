@@ -18,7 +18,7 @@
                 <div class="mb-3">Descrizione:
                 <p class="card-text">{{ elem.description }}</p>
                 </div>
-
+                <p class="card-text"> Numero di telefono: {{ elem.phone_number }}</p>
                 <p class="card-text"> Città: {{ elem.city }}</p>
                 <p class="card-text"> CAP: {{ elem.cap }}</p>
                 <p class="card-text"> Indirizzo: {{ elem.address }}</p>
