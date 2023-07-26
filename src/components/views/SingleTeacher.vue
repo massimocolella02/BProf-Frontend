@@ -3,22 +3,25 @@
         <div class="card" v-for="(elem, index) in teacher" :key="index" style="width: 18rem;">
             <img :src="elem.profile_picture" class="card-img-top" :alt="elem.user.name">
             <div class="card-body">
-                <h5 class="card-title">{{ elem.name }}</h5>
+                <p class="card-title">Nome e Cognome: {{ elem.name }}</p>
+                <div class="mb-3">Descrizione:
                 <p class="card-text">{{ elem.description }}</p>
+                </div>
                 
                 <div class="mb-3 subl">
+                    Materie:
                 <li class="list-inline" v-for="(materia, index) in elem.subjects" :key="index">
                     <i class="fa-solid fa-laptop-code me-2"></i>
                     {{ materia.name }}
                 </li>
                 </div>
 
-                <p class="card-text">{{ elem.city }}</p>
-                <p class="card-text">{{ elem.cap }}</p>
-                <p class="card-text">{{ elem.address }}</p>
-                <p class="card-text">{{ elem.cv }}</p>
-                <p class="card-text">{{ elem.price }}</p>
-                <p class="card-text">{{ elem.remote }}</p>
+                <p class="card-text"> Città: {{ elem.city }}</p>
+                <p class="card-text"> CAP: {{ elem.cap }}</p>
+                <p class="card-text"> Indirizzo: {{ elem.address }}</p>
+                <p class="card-text"> CV: {{ elem.cv }}</p>
+                <p class="card-text"> Prezzo / ora: {{ elem.price }} € </p>
+                <p class="card-text"> Disponibile in remoto: {{ elem.remote }}</p>
             </div>
         </div>
         <SendMessageComp :idTeacher="$route.params.id"/>
