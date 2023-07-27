@@ -18,9 +18,9 @@
         <button type="submit" class="btn btn-primary">Invia messaggio</button>
     </form>
 
-    <div id="messageSent" style="display: none;">
+    <div id="messageSent" hidden>
         <h2>Messaggio inviato</h2>
-    </div>
+    </div>  
 
 
 
@@ -46,6 +46,11 @@
         <br>
         <button type="submit" class="btn btn-primary">Invia recensione</button>
     </form>
+
+    <div id="reviewSent" hidden>
+        <h2>Recensione inviata</h2>
+    </div> 
+
 </template>
 <script>
 import axios from 'axios'
@@ -78,7 +83,8 @@ export default {
             
                 document.querySelector('#form-message').style.display = 'none';
     
-                document.querySelector('#messageSent').style.display = 'show';
+                let messageSent = document.querySelector('#messageSent');
+                messageSent.hidden = false;
             })
             .catch(function (error) {
              console.error(error);
@@ -91,7 +97,8 @@ export default {
                 
                 document.querySelector('#form-review').style.display = 'none';
 
-
+                let reviewSent = document.querySelector('#reviewSent');
+                reviewSent.hidden = false;
             })
             .catch(function (error) {
                     console.error(error);
