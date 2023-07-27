@@ -33,17 +33,26 @@
         </div>
         <div class="mt-4">
             <h3>Recensioni</h3>
-            <div v-if="reviews && reviews.length > 0">
-              <div v-for="(review, index) in reviews" :key="index" class="card mt-2">
-                <div class="card-body">
-                  <p class="card-text">Utente: {{ review.guest_name }}</p>
-                  <p class="card-text">Recensione: {{ review.description }}</p>
-                  <p class="card-text">Voto: {{ review.rate }}</p>
+            <div v-if="paginatedReviews && paginatedReviews.length > 0">
+                <div v-for="(review, index) in paginatedReviews" :key="index" class="card mt-2">
+                    <div class="card-body">
+                        <p class="card-text">Utente: {{ review.guest_name }}</p>
+                        <p class="card-text">Recensione: {{ review.description }}</p>
+                        <div>
+                            <p class="card-text" v-if="review.rate == 1">Voto: &#9733;&#9734;&#9734;&#9734;&#9734;</p>
+                            <p class="card-text" v-else-if="review.rate == 2">Voto: &#9733;&#9733;&#9734;&#9734;&#9734;</p>
+                            <p class="card-text" v-else-if="review.rate == 3">Voto: &#9733;&#9733;&#9733;&#9734;&#9734;</p>
+                            <p class="card-text" v-else-if="review.rate == 4">Voto: &#9733;&#9733;&#9733;&#9733;&#9734;</p>
+                            <p class="card-text" v-else-if="review.rate == 5">Voto: &#9733;&#9733;&#9733;&#9733;&#9733;</p>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
             <div v-else>
-              <p> Non ci sono recensioni disponibili per questo insegnante.</p>
+                <p>Non ci sono recensioni disponibili per questo insegnante.</p>
+            </div>
+            <div class="d-flex justify-content-center mt-3">
+                <button v-for="page in totalPages" :key="page" @click="currentPage = page" :class="{ 'btn btn-primary': currentPage === page, 'btn btn-light': currentPage !== page }">{{ page }}</button>
             </div>
         </div>
 
@@ -59,50 +68,55 @@ export default {
     name: 'SingleTeacher',
     props: ['detailsTeachers'],
     components: {
-    SendMessageComp,
+        SendMessageComp,
     },
     data() {
         return {
             teacher: [],
-            reviews: []
+            reviews: [],
+            currentPage: 1,
+            reviewsShown: 3,
         }
+    },
+    computed: {
+        paginatedReviews() {
+            const startRev = (this.currentPage - 1) * this.reviewsShown;
+            const endRev = startRev + this.reviewsShown;
+            return this.reviews.slice(startRev, endRev);
+        },
+        totalPages() {
+            return Math.ceil(this.reviews.length / this.reviewsShown);
+        },
     },
     mounted() {
         this.callApiSingleTeacher();
-
     },
     methods: {
-
         callApiSingleTeacher() {
-        axios.get(`http://127.0.0.1:8000/api/teachers/${this.$route.params.id}`)
-            .then(res => {
-                this.teacher = res.data.results;
-                // Chiamata API per ottenere le recensioni dell'insegnante
-                axios.get(`http://127.0.0.1:8000/api/teachers/${this.$route.params.id}/reviews`)
-                    .then(res => {
-                        this.reviews = res.data.results;
-                    })
-                    .catch(function (error) {
-                        console.error(error);
-                    });
-            })
-            .catch(function (error) {
-                console.error(error);
-            });
-        }
-
+            axios.get(`http://127.0.0.1:8000/api/teachers/${this.$route.params.id}`)
+                .then(res => {
+                    this.teacher = res.data.results;
+                    axios.get(`http://127.0.0.1:8000/api/teachers/${this.$route.params.id}/reviews`)
+                        .then(res => {
+                            this.reviews = res.data.results;
+                        })
+                        .catch(function (error) {
+                            console.error(error);
+                        });
+                })
+                .catch(function (error) {
+                    console.error(error);
+                });
+        },
     },
 }
 </script>
 
 <style lang="scss">
-    
 .subl li:nth-child(odd){
     color: red;
 }
-
 .subl li:nth-child(even){
     color: blue;
 }
-
 </style>
