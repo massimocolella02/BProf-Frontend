@@ -1,6 +1,6 @@
 <template>
     <div class="container my-4">
-      <h2 class="text-center">Teachers</h2>
+      <h2 class="text-center">Professori</h2>
       <!-- <select class="form-select" v-model="store.sortBy" @change="callTeachersApi()">
         <option value="">seleziona un'opzione</option>
         <option value="reviews-up" id="reviews-up" > Più recensioni </option>
