@@ -24,40 +24,40 @@
         />
       </div>
     </div>
-  </template>
+</template>
   
-  <script>
-  import axios from 'axios';
-  import SingleCardComp from '../SingleCardComp.vue';
-  import { store } from '../../storing/store';
+<script>
+    import axios from 'axios';
+    import SingleCardComp from '../SingleCardComp.vue';
+    import { store } from '../../storing/store';
   
-  export default {
+    export default {
     name: 'TeacherSection',
-    data() {
-      return {
-        store,
-        selectedReviewsOption: '',
-        selectedRating: null,
-      };
-    },
+        data() {
+            return {
+            store,
+            selectedReviewsOption: '',
+            selectedRating: null,
+            };
+        },
     components: {
-      SingleCardComp,
+        SingleCardComp,
     },
     mounted() {
-      this.callTeachersApi();
+        this.callTeachersApi();
     },
     computed: {
-      filteredTeachers() {
+        filteredTeachers() {
         if (this.selectedRating === null) {
-          return this.store.infoTeachers;
+            return this.store.infoTeachers;
         } else {
-          // Filter teachers based on selected rating and more
-          return this.store.infoTeachers.filter((teacher) => teacher.averageRating >= parseInt(this.selectedRating));
+        
+            return this.store.infoTeachers.filter((teacher) => teacher.averageRating >= parseInt(this.selectedRating));
         }
-      },
+        },
     },
     methods: {
-      callTeachersApi() {
+        callTeachersApi() {
         const params = {};
   
         if (store.selectedSubject !== null && store.sortBy == null) {
@@ -71,8 +71,8 @@
         }
   
         axios
-          .get('http://127.0.0.1:8000/api/teachers', { params })
-          .then((res) => {
+            .get('http://127.0.0.1:8000/api/teachers', { params })
+            .then((res) => {
             console.log(res.data.results);
             store.infoTeachers = res.data.results;
   
@@ -105,14 +105,13 @@
         }
       },
       onRatingChange() {
-        // Trigger a re-evaluation of the computed property to update the filtered results
         this.$forceUpdate();
       },
     },
   };
-  </script>
+</script>
   
-  <style lang="scss">
-  /* Add your styles here */
-  </style>
+<style lang="scss">
+
+</style>
   
