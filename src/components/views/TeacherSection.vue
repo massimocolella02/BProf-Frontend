@@ -2,7 +2,7 @@
     <div class="container my-4">
       <h2 class="text-center">Professori</h2>
       <select class="form-select" v-model="selectedReviewsOption" @change="onReviewsOptionChange()">
-        <option value="" >Seleziona un'opzione</option>
+        <option value="" >Seleziona un'opzione di ordinamento</option>
         <option value="reviews-up">Più recensioni</option>
         <option value="reviews-down">Meno recensioni</option>
       </select>
