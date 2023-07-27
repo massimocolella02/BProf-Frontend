@@ -1,11 +1,15 @@
 <template>
     <div class="container my-4">
       <h2 class="text-center">Teachers</h2>
-      <select class="form-select" v-model="store.sortBy" @change="callTeachersApi()">
-        <option value="reviews-up" selected>Più recensioni</option>
-        <option value="reviews-down" selected>Meno  recensioni</option>
-      </select>
+      <!-- <select class="form-select" v-model="store.sortBy" @change="callTeachersApi()">
+        <option value="">seleziona un'opzione</option>
+        <option value="reviews-up" id="reviews-up" > Più recensioni </option>
+        <option value="reviews-up" id="reviews-down"> Meno recensioni </option>
+      </select> -->
   
+      <input type="radio" name="reviews" id="down" @click="downR()"> Più recensioni
+      <input type="radio" name="reviews" id="up" @click="upR()"> Meno recensioni
+
       <input type="radio" name="rating" id="one-star" @click="selectRating(1)"> 1 stella
       <input type="radio" name="rating" id="two-star" @click="selectRating(2)"> 2 stelle
       <input type="radio" name="rating" id="three-star" @click="selectRating(3)"> 3 stelle
@@ -85,6 +89,8 @@
               let averageRating = numReviews !== 0 ? sumOfRatings / numReviews : 0;
   
               teacher.averageRating = averageRating;
+
+              console.log(numReviews)
             });
           })
           .catch(function (error) {
@@ -93,6 +99,12 @@
       },
       selectRating(rating) {
         this.selectedRating = rating;
+      },
+      downR(){
+        this.store.infoTeachers.sort((a, b) => b.reviews.length - a.reviews.length);
+      },
+      upR(){
+        this.store.infoTeachers.sort((a, b) => a.reviews.length - b.reviews.length);
       },
     },
   };
