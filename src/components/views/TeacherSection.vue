@@ -1,20 +1,17 @@
 <template>
     <div class="container my-4">
       <h2 class="text-center">Professori</h2>
-      <!-- <select class="form-select" v-model="store.sortBy" @change="callTeachersApi()">
-        <option value="">seleziona un'opzione</option>
-        <option value="reviews-up" id="reviews-up" > Più recensioni </option>
-        <option value="reviews-up" id="reviews-down"> Meno recensioni </option>
-      </select> -->
+      <select class="form-select" v-model="selectedReviewsOption" @change="onReviewsOptionChange()">
+        <option value="">Seleziona un'opzione</option>
+        <option value="reviews-up">Più recensioni</option>
+        <option value="reviews-down">Meno recensioni</option>
+      </select>
   
-      <input type="radio" name="reviews" id="down" @click="downR()"> Più recensioni
-      <input type="radio" name="reviews" id="up" @click="upR()"> Meno recensioni
-
-      <input type="radio" name="rating" id="one-star" @click="selectRating(1)"> 1 stella
-      <input type="radio" name="rating" id="two-star" @click="selectRating(2)"> 2 stelle
-      <input type="radio" name="rating" id="three-star" @click="selectRating(3)"> 3 stelle
-      <input type="radio" name="rating" id="four-star" @click="selectRating(4)"> 4 stelle
-      <input type="radio" name="rating" id="five-star" @click="selectRating(5)"> 5 stelle
+      <input type="radio" name="rating" id="one-star" @click="selectRating(1)">1 stella
+      <input type="radio" name="rating" id="two-star" @click="selectRating(2)">2 stelle
+      <input type="radio" name="rating" id="three-star" @click="selectRating(3)">3 stelle
+      <input type="radio" name="rating" id="four-star" @click="selectRating(4)">4 stelle
+      <input type="radio" name="rating" id="five-star" @click="selectRating(5)">5 stelle
   
       <div class="row">
         <SingleCardComp
@@ -37,6 +34,7 @@
       return {
         store,
         selectedRating: null,
+        selectedReviewsOption: '',
       };
     },
     components: {
@@ -50,9 +48,7 @@
         if (this.selectedRating === null) {
           return this.store.infoTeachers;
         } else {
-          return this.store.infoTeachers.filter(
-            (teacher) => teacher.averageRating === this.selectedRating
-          );
+          return this.store.infoTeachers.filter((teacher) => teacher.averageRating === this.selectedRating);
         }
       },
     },
@@ -87,12 +83,10 @@
               }
   
               let averageRating = numReviews !== 0 ? Math.round(sumOfRatings / numReviews) : 0;
-
-
+  
               teacher.averageRating = averageRating;
-
-              console.log(numReviews)
-              
+  
+              console.log(numReviews);
             });
           })
           .catch(function (error) {
@@ -102,17 +96,18 @@
       selectRating(rating) {
         this.selectedRating = rating;
       },
-      downR(){
-        this.store.infoTeachers.sort((a, b) => b.reviews.length - a.reviews.length);
-      },
-      upR(){
-        this.store.infoTeachers.sort((a, b) => a.reviews.length - b.reviews.length);
+      onReviewsOptionChange() {
+        if (this.selectedReviewsOption === 'reviews-up') {
+          this.store.infoTeachers.sort((a, b) => b.reviews.length - a.reviews.length);
+        } else if (this.selectedReviewsOption === 'reviews-down') {
+          this.store.infoTeachers.sort((a, b) => a.reviews.length - b.reviews.length);
+        }
       },
     },
   };
   </script>
   
   <style lang="scss">
-  
+ 
   </style>
   
