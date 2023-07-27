@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="getData()">
+    <form @submit.prevent="getData()" id="form-message">
         <h2>Chiedi informazioni:</h2>
         <div class="mb-3">
             <label for="name" class="form-label">Nome*</label>
@@ -18,8 +18,13 @@
         <button type="submit" class="btn btn-primary">Invia messaggio</button>
     </form>
 
+    <div id="messageSent" hidden>
+        <h2>Messaggio inviato</h2>
+    </div>  
 
-    <form @submit.prevent="getDataReviews()">
+
+
+    <form @submit.prevent="getDataReviews()" id="form-review">
         <h2>Lascia una recensione: </h2>
         <div class="mb-3">
             <label for="name" class="form-label">Nome*</label>
@@ -41,6 +46,11 @@
         <br>
         <button type="submit" class="btn btn-primary">Invia recensione</button>
     </form>
+
+    <div id="reviewSent" hidden>
+        <h2>Recensione inviata</h2>
+    </div> 
+
 </template>
 <script>
 import axios from 'axios'
@@ -70,17 +80,25 @@ export default {
             
             axios.post('http://127.0.0.1:8000/api/teachers/message', this.params)
             .then(res => {
-                location.reload();
+            
+                document.querySelector('#form-message').style.display = 'none';
+    
+                let messageSent = document.querySelector('#messageSent');
+                messageSent.hidden = false;
             })
             .catch(function (error) {
-                    console.error(error);
+             console.error(error);
             });
         },
         getDataReviews(){
             
             axios.post('http://127.0.0.1:8000/api/teachers/message', this.review)
             .then(res => {
-                location.reload();
+                
+                document.querySelector('#form-review').style.display = 'none';
+
+                let reviewSent = document.querySelector('#reviewSent');
+                reviewSent.hidden = false;
             })
             .catch(function (error) {
                     console.error(error);
