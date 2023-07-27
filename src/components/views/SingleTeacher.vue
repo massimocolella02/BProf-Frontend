@@ -38,7 +38,13 @@
                 <div class="card-body">
                   <p class="card-text">Utente: {{ review.guest_name }}</p>
                   <p class="card-text">Recensione: {{ review.description }}</p>
-                  <p class="card-text">Voto: {{ review.rate }}</p>
+                <div>
+                    <p class="card-text" v-if="review.rate == 1">Voto: &#9733;&#9734;&#9734;&#9734;&#9734;</p>
+                    <p class="card-text" v-else-if="review.rate == 2">Voto: &#9733;&#9733;&#9734;&#9734;&#9734;</p>
+                    <p class="card-text" v-else-if="review.rate == 3">Voto: &#9733;&#9733;&#9733;&#9734;&#9734;</p>
+                    <p class="card-text" v-else-if="review.rate == 4">Voto: &#9733;&#9733;&#9733;&#9733;&#9734;</p>
+                    <p class="card-text" v-else-if="review.rate == 5">Voto: &#9733;&#9733;&#9733;&#9733;&#9733;</p>
+                </div>
                 </div>
               </div>
             </div>
