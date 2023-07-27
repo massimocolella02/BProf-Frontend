@@ -1,20 +1,20 @@
 <template>
     <div class="container my-4">
       <h2 class="text-center">Professori</h2>
-      <!-- <select class="form-select" v-model="store.sortBy" @change="callTeachersApi()">
-        <option value="">seleziona un'opzione</option>
-        <option value="reviews-up" id="reviews-up" > Più recensioni </option>
-        <option value="reviews-up" id="reviews-down"> Meno recensioni </option>
-      </select> -->
+      <select class="form-select" v-model="selectedReviewsOption" @change="onReviewsOptionChange()">
+        <option value="" >Seleziona un'opzione di ordinamento</option>
+        <option value="reviews-up">Più recensioni</option>
+        <option value="reviews-down">Meno recensioni</option>
+      </select>
   
-      <input type="radio" name="reviews" id="down" @click="downR()"> Più recensioni
-      <input type="radio" name="reviews" id="up" @click="upR()"> Meno recensioni
-
-      <input type="radio" name="rating" id="one-star" @click="selectRating(1)"> 1 stella
-      <input type="radio" name="rating" id="two-star" @click="selectRating(2)"> 2 stelle
-      <input type="radio" name="rating" id="three-star" @click="selectRating(3)"> 3 stelle
-      <input type="radio" name="rating" id="four-star" @click="selectRating(4)"> 4 stelle
-      <input type="radio" name="rating" id="five-star" @click="selectRating(5)"> 5 stelle
+      <select class="form-select" v-model="selectedRating" @change="onRatingChange()">
+        <option value=""> Seleziona una valutazione </option>
+        <option value="1">1 stella o più</option>
+        <option value="2">2 stelle o più</option>
+        <option value="3">3 stelle o più</option>
+        <option value="4">4 stelle o più</option>
+        <option value="5">5 stelle o più</option>
+      </select>
   
       <div class="row">
         <SingleCardComp
@@ -24,40 +24,40 @@
         />
       </div>
     </div>
-  </template>
+</template>
   
-  <script>
-  import axios from 'axios';
-  import SingleCardComp from '../SingleCardComp.vue';
-  import { store } from '../../storing/store';
+<script>
+    import axios from 'axios';
+    import SingleCardComp from '../SingleCardComp.vue';
+    import { store } from '../../storing/store';
   
-  export default {
+    export default {
     name: 'TeacherSection',
-    data() {
-      return {
-        store,
-        selectedRating: null,
-      };
-    },
+        data() {
+            return {
+            store,
+            selectedReviewsOption: '',
+            selectedRating: '',
+            };
+        },
     components: {
-      SingleCardComp,
+        SingleCardComp,
     },
     mounted() {
-      this.callTeachersApi();
+        this.callTeachersApi();
     },
     computed: {
-      filteredTeachers() {
-        if (this.selectedRating === null) {
-          return this.store.infoTeachers;
+        filteredTeachers() {
+        if (this.selectedRating === '') {
+            return this.store.infoTeachers;
         } else {
-          return this.store.infoTeachers.filter(
-            (teacher) => teacher.averageRating === this.selectedRating
-          );
+        
+            return this.store.infoTeachers.filter((teacher) => teacher.averageRating >= parseInt(this.selectedRating));
         }
-      },
+        },
     },
     methods: {
-      callTeachersApi() {
+        callTeachersApi() {
         const params = {};
   
         if (store.selectedSubject !== null && store.sortBy == null) {
@@ -71,8 +71,8 @@
         }
   
         axios
-          .get('http://127.0.0.1:8000/api/teachers', { params })
-          .then((res) => {
+            .get('http://127.0.0.1:8000/api/teachers', { params })
+            .then((res) => {
             console.log(res.data.results);
             store.infoTeachers = res.data.results;
   
@@ -87,32 +87,31 @@
               }
   
               let averageRating = numReviews !== 0 ? Math.round(sumOfRatings / numReviews) : 0;
-
-
+  
               teacher.averageRating = averageRating;
-
-              console.log(numReviews)
-              
+  
+              console.log(numReviews);
             });
           })
           .catch(function (error) {
             console.error(error);
           });
       },
-      selectRating(rating) {
-        this.selectedRating = rating;
+      onReviewsOptionChange() {
+        if (this.selectedReviewsOption === 'reviews-up') {
+          this.store.infoTeachers.sort((a, b) => b.reviews.length - a.reviews.length);
+        } else if (this.selectedReviewsOption === 'reviews-down') {
+          this.store.infoTeachers.sort((a, b) => a.reviews.length - b.reviews.length);
+        }
       },
-      downR(){
-        this.store.infoTeachers.sort((a, b) => b.reviews.length - a.reviews.length);
-      },
-      upR(){
-        this.store.infoTeachers.sort((a, b) => a.reviews.length - b.reviews.length);
+      onRatingChange() {
+        this.$forceUpdate();
       },
     },
   };
-  </script>
+</script>
   
-  <style lang="scss">
-  
-  </style>
+<style lang="scss">
+
+</style>
   
