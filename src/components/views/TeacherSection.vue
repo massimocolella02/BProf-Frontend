@@ -8,7 +8,7 @@
       </select>
   
       <select class="form-select" v-model="selectedRating" @change="onRatingChange()">
-        <option value="">Seleziona una valutazione</option>
+        <option value=""> Seleziona una valutazione </option>
         <option value="1">1 stella o più</option>
         <option value="2">2 stelle o più</option>
         <option value="3">3 stelle o più</option>
@@ -37,7 +37,7 @@
             return {
             store,
             selectedReviewsOption: '',
-            selectedRating: null,
+            selectedRating: '',
             };
         },
     components: {
@@ -48,7 +48,7 @@
     },
     computed: {
         filteredTeachers() {
-        if (this.selectedRating === null) {
+        if (this.selectedRating === '') {
             return this.store.infoTeachers;
         } else {
         
