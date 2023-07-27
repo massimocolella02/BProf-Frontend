@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid">
+    <div class="container">
         <div class="card" v-for="(elem, index) in teacher" :key="index" style="width: 18rem;">
             <img v-if="elem.profile_picture !== null" :src="`http://127.0.0.1:8000/storage/${elem.profile_picture}`" class="card-img-top" :alt="elem.user.name">
             <img v-if="elem.profile_picture === null" src="../../assets/img/pp.jpg" class="card-img-top" alt="default profile picture">
