@@ -2,16 +2,19 @@
     <div class="container my-4">
       <h2 class="text-center">Professori</h2>
       <select class="form-select" v-model="selectedReviewsOption" @change="onReviewsOptionChange()">
-        <option value="">Seleziona un'opzione</option>
+        <option value="" >Seleziona un'opzione</option>
         <option value="reviews-up">Più recensioni</option>
         <option value="reviews-down">Meno recensioni</option>
       </select>
   
-      <input type="radio" name="rating" id="one-star" @click="selectRating(1)">1 stella
-      <input type="radio" name="rating" id="two-star" @click="selectRating(2)">2 stelle
-      <input type="radio" name="rating" id="three-star" @click="selectRating(3)">3 stelle
-      <input type="radio" name="rating" id="four-star" @click="selectRating(4)">4 stelle
-      <input type="radio" name="rating" id="five-star" @click="selectRating(5)">5 stelle
+      <select class="form-select" v-model="selectedRating" @change="onRatingChange()">
+        <option value="">Seleziona una valutazione</option>
+        <option value="1">1 stella o più</option>
+        <option value="2">2 stelle o più</option>
+        <option value="3">3 stelle o più</option>
+        <option value="4">4 stelle o più</option>
+        <option value="5">5 stelle o più</option>
+      </select>
   
       <div class="row">
         <SingleCardComp
@@ -33,8 +36,8 @@
     data() {
       return {
         store,
-        selectedRating: null,
         selectedReviewsOption: '',
+        selectedRating: null,
       };
     },
     components: {
@@ -48,7 +51,8 @@
         if (this.selectedRating === null) {
           return this.store.infoTeachers;
         } else {
-          return this.store.infoTeachers.filter((teacher) => teacher.averageRating === this.selectedRating);
+          // Filter teachers based on selected rating and more
+          return this.store.infoTeachers.filter((teacher) => teacher.averageRating >= parseInt(this.selectedRating));
         }
       },
     },
@@ -93,9 +97,6 @@
             console.error(error);
           });
       },
-      selectRating(rating) {
-        this.selectedRating = rating;
-      },
       onReviewsOptionChange() {
         if (this.selectedReviewsOption === 'reviews-up') {
           this.store.infoTeachers.sort((a, b) => b.reviews.length - a.reviews.length);
@@ -103,11 +104,15 @@
           this.store.infoTeachers.sort((a, b) => a.reviews.length - b.reviews.length);
         }
       },
+      onRatingChange() {
+        // Trigger a re-evaluation of the computed property to update the filtered results
+        this.$forceUpdate();
+      },
     },
   };
   </script>
   
   <style lang="scss">
- 
+  /* Add your styles here */
   </style>
   
