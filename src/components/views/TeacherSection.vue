@@ -86,11 +86,13 @@
                 sumOfRatings += review.rate;
               }
   
-              let averageRating = numReviews !== 0 ? sumOfRatings / numReviews : 0;
-  
+              let averageRating = numReviews !== 0 ? Math.round(sumOfRatings / numReviews) : 0;
+
+
               teacher.averageRating = averageRating;
 
               console.log(numReviews)
+              
             });
           })
           .catch(function (error) {
