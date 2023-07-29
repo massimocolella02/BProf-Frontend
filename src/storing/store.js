@@ -6,4 +6,5 @@ export const store = reactive({
     sortBy: 'reviews',
     infoTeachers: [],
     pathUrlBack: "http://localhost:8000/",
+    sponsoredTeachers: []
 })

@@ -1,5 +1,5 @@
 <template>
-  <!-- <swiper :slidesPerView="1" :spaceBetween="10" :pagination="{clickable: true,}" 
+  <swiper :slidesPerView="1" :spaceBetween="10" :pagination="{clickable: true,}" 
   :breakpoints="{
   '480': {
     slidesPerView: 1,
@@ -14,10 +14,10 @@
     spaceBetween: 40,
   },
 }" :modules="modules" class="mySwiper">
-    <swiper-slide v-for="(elem, index) in 4" :key="index">
-      <img src="/img/black/bprof_logo_black.png" alt="">
+    <swiper-slide v-for="(elem, index) in store.sponsoredTeachers" :key="index">
+      <SingleCardComp :detailsTeachers="elem" :key="'card-' + index" />
     </swiper-slide>
-  </swiper> -->
+  </swiper>
 
   <div class="hero">
     <div class="container_heading">
@@ -54,15 +54,17 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 
 import 'swiper/css';
 
-import 'swiper/css/pagination';
+
 
 import { Pagination } from 'swiper/modules';
+import SingleCardComp from './SingleCardComp.vue';
 
 export default {
   name: 'HeroComp',
   components: {
     Swiper,
     SwiperSlide,
+    SingleCardComp
   },
   data() {
     return {
@@ -92,9 +94,16 @@ export default {
     changeSub(i) {
       store.selectedSubject = i;
     },
+    callSponsor(){
+      axios.get('http://127.0.0.1:8000/api/sponsor').then(res => {
+        store.sponsoredTeachers = res.data.data;
+        console.log(res.data.data);
+      })
+    }
   },
   created() {
     this.callSubjects();
+    this.callSponsor();
   },
   computed: {
     filteredSubjects() {

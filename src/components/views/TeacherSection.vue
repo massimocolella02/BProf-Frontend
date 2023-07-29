@@ -28,6 +28,13 @@
         </div>
       </div>
     </div>
+    <div class="mb-2">
+
+      <h2>Professori in evidenza:</h2>
+      <div class="container_all_sub">
+        <SingleCardComp v-if="filteredTeachersSponsored.length > 0" v-for="(elem, index) in filteredTeachersSponsored" :detailsTeachers="elem" :key="'card-' + index" />
+      </div>
+    </div>
     <div class="container_all_sub">
       <SingleCardComp v-for="(elem, index) in filteredTeachers" :detailsTeachers="elem" :key="'card-' + index" />
     </div>
@@ -53,8 +60,12 @@ export default {
   },
   mounted() {
     this.callTeachersApi();
+    this.callTeachersSponsored();
   },
   computed: {
+    filteredTeachersSponsored(){
+      return this.store.sponsoredTeachers;
+    },
     filteredTeachers() {
       if (this.selectedRating === '') {
         return this.store.infoTeachers;
@@ -114,6 +125,39 @@ export default {
     },
     onRatingChange() {
       this.$forceUpdate();
+    },
+    callTeachersSponsored() {
+      const params = {};
+
+      if (store.selectedSubject !== null) {
+        params.subject_id = store.selectedSubject;
+      }
+
+      axios
+        .get('http://127.0.0.1:8000/api/sponsor', { params })
+        .then((res) => {
+          store.sponsoredTeachers = res.data.data;
+
+          // calc and store the average rating for each teacher
+          store.sponsoredTeachers.forEach((teacher) => {
+            let { reviews } = teacher;
+            let numReviews = reviews.length;
+            let sumOfRatings = 0;
+
+            for (let review of reviews) {
+              sumOfRatings += review.rate;
+            }
+
+            let averageRating = numReviews !== 0 ? Math.round(sumOfRatings / numReviews) : 0;
+
+            teacher.averageRating = averageRating;
+
+            console.log(numReviews);
+          });
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
     },
   },
 };
