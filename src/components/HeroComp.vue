@@ -1,29 +1,4 @@
 <template>
-  <div class="d-flex justify-content-center ">
-    <h2 class="mt-3">Professori in evidenza</h2>
-  </div>
-    <swiper :slidesPerView="1" :spaceBetween="10" :pagination="{clickable: true,}" 
-    :breakpoints="{
-    '480': {
-      slidesPerView: 1,
-      spaceBetween: 10,
-    },
-    '640': {
-      slidesPerView: 2,
-      spaceBetween: 20,
-    },
-    '768': {
-      slidesPerView: 3,
-      spaceBetween: 40,
-    },
-  }" :modules="modules" class="mySwiper">
-      <swiper-slide v-for="(elem, index) in store.sponsoredTeachers" :key="index">
-      
-      <SingleCardComp :detailsTeachers="elem" :key="'card-' + index"/>
-      
-      </swiper-slide>
-    </swiper>
-
   <div class="hero">
     <div class="container_heading">
       <h1 class="heading">Trova subito il tuo insegnante perfetto</h1>
@@ -50,19 +25,43 @@
       </div>
     </div>
   </div>
+  <div class="container_slider mt-5 mb-5">
+    <div class="container_heading d-flex justify-content-center">
+      <h1 class="heading">Professori in evidenza</h1>
+    </div>
+    <swiper :slidesPerView="1" :spaceBetween="10" :pagination="{ clickable: true, }" :breakpoints="{
+      '480': {
+        slidesPerView: 1,
+        spaceBetween: 10,
+      },
+      '640': {
+        slidesPerView: 2,
+        spaceBetween: 20,
+      },
+      '768': {
+        slidesPerView: 3,
+        spaceBetween: 40,
+      },
+    }" :modules="modules" class="mySwiper">
+      <swiper-slide v-for="(elem, index) in store.sponsoredTeachers" :key="index">
+
+        <SingleCardComp :detailsTeachers="elem" :key="'card-' + index" />
+
+      </swiper-slide>
+    </swiper>
+  </div>
 </template>
 <script>
 import axios from 'axios';
 import { store } from '../storing/store';
 
+import SingleCardComp from './singlecardcomp.vue';
+
 import { Swiper, SwiperSlide } from 'swiper/vue';
 
 import 'swiper/css';
 
-
-
 import { Pagination } from 'swiper/modules';
-import SingleCardComp from './SingleCardComp.vue';
 
 export default {
   name: 'HeroComp',
@@ -99,7 +98,7 @@ export default {
     changeSub(i) {
       store.selectedSubject = i;
     },
-    callSponsor(){
+    callSponsor() {
       axios.get('http://127.0.0.1:8000/api/sponsor').then(res => {
         store.sponsoredTeachers = res.data.data;
         console.log(res.data.data);
@@ -121,6 +120,16 @@ export default {
 };
 </script>
 <style lang="scss">
+.container_slider {
+  position: relative;
+  width: 100%;
+  padding: 0 90px;
+
+  @media only screen and (max-width: 900px) {
+    padding: 0 4%;
+  }
+}
+
 .swiper {
   width: 100%;
   height: 100%;
