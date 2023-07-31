@@ -1,6 +1,6 @@
 <template>
     <router-link :to="{ name: 'single-teacher', params: { id: detailsTeachers.id } }">
-        <div class="card_sub">
+        <div class="card_sub text-center p-3">
             <img class="img_profile" v-if="detailsTeachers.profile_picture !== null"
                 :src="`http://127.0.0.1:8000/storage/${detailsTeachers.profile_picture}`"
                 :alt="detailsTeachers.user.name + 'profile picture'">
@@ -9,21 +9,23 @@
             <div class="card_body">
                 <h5 class="card_title">{{ detailsTeachers.user.name }} {{ detailsTeachers.user.surname }}</h5>
                 <p class="card_text">{{ detailsTeachers.description }}</p>
+                
                 <div class="container_rating_sub">
-                    <div class="star">
-                        <p class="card-text" v-if="averageRating == 1">&#9733;&#9734;&#9734;&#9734;&#9734;</p>
-                        <p class="card-text" v-else-if="averageRating == 2">&#9733;&#9733;&#9734;&#9734;&#9734;</p>
-                        <p class="card-text" v-else-if="averageRating == 3">&#9733;&#9733;&#9733;&#9734;&#9734;</p>
-                        <p class="card-text" v-else-if="averageRating == 4">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
-                        <p class="card-text" v-else-if="averageRating == 5">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
-                    </div>
-                    <span class="separator">•</span>
+                    <div class="star" v-if="averageRating !== 0">
+                    <p class="card-text" v-if="averageRating == 1">&#9733;&#9734;&#9734;&#9734;&#9734;</p>
+                    <p class="card-text" v-else-if="averageRating == 2">&#9733;&#9733;&#9734;&#9734;&#9734;</p>
+                    <p class="card-text" v-else-if="averageRating == 3">&#9733;&#9733;&#9733;&#9734;&#9734;</p>
+                    <p class="card-text" v-else-if="averageRating == 4">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
+                    <p class="card-text" v-else-if="averageRating == 5">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+                </div>
+                <div class="hidden" v-else>
+                </div>
+
                     <div class="rec">
-                        <p class="card_rec">{{ detailsTeachers.reviews.length }}
-                            <span v-if="detailsTeachers.reviews.length === 0">Non ci sono recensioni su questo
-                                professore</span>
-                            <span v-else-if="detailsTeachers.reviews.length === 1">Recensione</span>
-                            <span v-else-if="detailsTeachers.reviews.length >= 2">Recensioni</span>
+                        <p class="card_rec">
+                            <span v-if="detailsTeachers.reviews.length === 0"> Questo professore non ha recensioni</span>
+                            <span v-else-if="detailsTeachers.reviews.length === 1"> {{ detailsTeachers.reviews.length }} Recensione</span>
+                            <span v-else-if="detailsTeachers.reviews.length >= 2"> {{ detailsTeachers.reviews.length }} Recensioni</span>
                         </p>
                     </div>
                 </div>
@@ -66,10 +68,11 @@ a {
     width: 100%;
 
     .img_profile {
-        width: 100%;
+        width: 10rem;
         aspect-ratio: 1;
         border-radius: 10px;
         object-fit: cover;
+        margin: auto;
     }
 
     .card_body {
@@ -102,6 +105,7 @@ a {
             .rec {
                 display: flex;
                 align-items: center;
+                margin: auto;
             }
 
             .separator {
