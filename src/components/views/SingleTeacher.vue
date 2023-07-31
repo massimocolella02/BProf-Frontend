@@ -212,13 +212,6 @@ export default {
 </script>
 
 <style lang="scss">
-.subl li:nth-child(odd) {
-    color: red;
-}
-
-.subl li:nth-child(even) {
-    color: blue;
-}
 
 .container_single_card {
     width: 100%;
