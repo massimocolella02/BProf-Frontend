@@ -126,6 +126,7 @@ export default {
     margin-top: 3em;
     display: flex;
     justify-content: space-around;
+    margin-bottom: 50px;
 
     @media only screen and (max-width: 1050px) {
         flex-direction: column;
