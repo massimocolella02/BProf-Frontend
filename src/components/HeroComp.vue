@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex justify-content-center ">
-    <h2>Professori in evidenza</h2>
+    <h2 class="mt-3">Professori in evidenza</h2>
   </div>
     <swiper :slidesPerView="1" :spaceBetween="10" :pagination="{clickable: true,}" 
     :breakpoints="{
