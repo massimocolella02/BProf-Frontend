@@ -153,6 +153,7 @@
             </div>
         </div>
     </div>
+    <SendMessageComp :idTeacher="$route.params.id"/>
 </template>
 
 <script>
