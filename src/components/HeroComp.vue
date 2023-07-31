@@ -1,23 +1,28 @@
 <template>
-  <swiper :slidesPerView="1" :spaceBetween="10" :pagination="{clickable: true,}" 
-  :breakpoints="{
-  '480': {
-    slidesPerView: 1,
-    spaceBetween: 10,
-  },
-  '640': {
-    slidesPerView: 2,
-    spaceBetween: 20,
-  },
-  '768': {
-    slidesPerView: 3,
-    spaceBetween: 40,
-  },
-}" :modules="modules" class="mySwiper">
-    <swiper-slide v-for="(elem, index) in store.sponsoredTeachers" :key="index">
-      <SingleCardComp :detailsTeachers="elem" :key="'card-' + index" />
-    </swiper-slide>
-  </swiper>
+  <div class="d-flex justify-content-center ">
+    <h2>Professori in evidenza</h2>
+  </div>
+    <swiper :slidesPerView="1" :spaceBetween="10" :pagination="{clickable: true,}" 
+    :breakpoints="{
+    '480': {
+      slidesPerView: 1,
+      spaceBetween: 10,
+    },
+    '640': {
+      slidesPerView: 2,
+      spaceBetween: 20,
+    },
+    '768': {
+      slidesPerView: 3,
+      spaceBetween: 40,
+    },
+  }" :modules="modules" class="mySwiper">
+      <swiper-slide v-for="(elem, index) in store.sponsoredTeachers" :key="index">
+      
+      <SingleCardComp :detailsTeachers="elem" :key="'card-' + index"/>
+      
+      </swiper-slide>
+    </swiper>
 
   <div class="hero">
     <div class="container_heading">
