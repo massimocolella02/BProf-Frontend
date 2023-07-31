@@ -31,7 +31,7 @@
     <div class="mb-2">
 
       <h2 v-if="filteredTeachersSponsored.length > 0">Professori in evidenza:</h2>
-      <div class="container_all_sub">
+      <div class="container_all_spon">
         <SingleCardComp v-if="filteredTeachersSponsored.length > 0" v-for="(elem, index) in filteredTeachersSponsored" :detailsTeachers="elem" :key="'card-' + index" />
       </div>
     </div>
@@ -249,6 +249,21 @@ export default {
       grid-template-columns: repeat(3, 1fr);
     }
   }
+
+  .container_all_spon {
+    width: 100%;
+    display: grid;
+    grid-gap: 60px;
+    column-gap: 40px;
+    grid-template-columns: repeat(4, 1fr);
+    background-color: #89CE94;
+    border-radius: 0.4rem;
+
+    @media only screen and (max-width: 900px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
 }
 </style>
   
