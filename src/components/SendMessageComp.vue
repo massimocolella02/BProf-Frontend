@@ -1,4 +1,6 @@
 <template>
+    <div class="container_single_card ">
+        <div class="messagebox">
     <form @submit.prevent="getData()" id="form-message">
         <h2>Chiedi informazioni:</h2>
         <div class="mb-3">
@@ -15,15 +17,17 @@
         </div>
         <span for="name" class="col-md-6 text-md-right campi ">I campi contrassegnati da * sono obblgatori.</span>
         <br>
-        <button type="submit" class="btn btn-primary">Invia messaggio</button>
+        <button type="submit" class="btn_reg_no mt-3">Invia messaggio</button>
     </form>
 
     <div id="messageSent" hidden>
-        <h2>Messaggio inviato</h2>
+        <h2>Messaggio inviato con successo</h2>
     </div>  
+    </div>
 
 
 
+    <div class="reviewbox">
     <form @submit.prevent="getDataReviews()" id="form-review">
         <h2>Lascia una recensione: </h2>
         <div class="mb-3">
@@ -44,12 +48,14 @@
         </div>
         <span for="name" class="col-md-6 text-md-right campi ">I campi contrassegnati da * sono obblgatori.</span>
         <br>
-        <button type="submit" class="btn btn-primary">Invia recensione</button>
+        <button type="submit" class="btn_reg_no mt-3">Invia recensione</button>
     </form>
 
     <div id="reviewSent" hidden>
-        <h2>Recensione inviata</h2>
+        <h2>Recensione inviata con successo</h2>
     </div> 
+    </div>
+    </div>
 
 </template>
 <script>
@@ -113,5 +119,44 @@ export default {
         font-size: small!important;
         margin-top: 2rem!important;
     }
+
+    .container_single_card {
+    width: 100%;
+    padding: 0 90px;
+    margin-top: 3em;
+    display: flex;
+    justify-content: space-around;
+
+    @media only screen and (max-width: 1050px) {
+        flex-direction: column;
+    }
+
+    @media only screen and (max-width: 900px) {
+        padding: 0 4%;
+    }
+
+}
+
+.messagebox{
+    width: calc(100% / 2 - 10%)
+}
+
+.reviewbox{
+    width: calc(100% / 2 - 10%)
+}
+
+.btn_reg_no{
+  border: 2px solid #89ce94;
+  outline: none;
+  padding: 9px 21px;
+  border-radius: 32px;
+  background: transparent;
+  backdrop-filter: blur(10px);
+  display: inline;
+  align-items: center;
+  cursor: pointer;
+  transition: all 200ms ease;
+  background-color: #89CE94!important;
+}
     
 </style>
