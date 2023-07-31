@@ -30,7 +30,7 @@
     </div>
     <div class="mb-2">
 
-      <h2>Professori in evidenza:</h2>
+      <h2 v-if="filteredTeachersSponsored.length > 0">Professori in evidenza:</h2>
       <div class="container_all_sub">
         <SingleCardComp v-if="filteredTeachersSponsored.length > 0" v-for="(elem, index) in filteredTeachersSponsored" :detailsTeachers="elem" :key="'card-' + index" />
       </div>
