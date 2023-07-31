@@ -55,6 +55,7 @@ export default {
             const average = sumRatings / this.detailsTeachers.reviews.length;
             return average.toFixed(0);
         },
+        
     },
 };
 </script>
