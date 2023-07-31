@@ -6,7 +6,7 @@
     <div class="container_filters">
       <div class="selector_fil">
         <select class="select_fil" v-model="selectedReviewsOption" @change="onReviewsOptionChange()">
-          <option value="">Seleziona un'opzione di ordinamento</option>
+          <option value="">Seleziona un ordinamento</option>
           <option value="reviews-up">Più recensioni</option>
           <option value="reviews-down">Meno recensioni</option>
         </select>
@@ -30,7 +30,7 @@
     </div>
     <div class="mb-2">
 
-      <h2 v-if="filteredTeachersSponsored.length > 0">Professori in evidenza:</h2>
+      <h2 v-if="filteredTeachersSponsored.length > 0">Professori in evidenza</h2>
       <div class="container_all_spon">
         <SingleCardComp v-if="filteredTeachersSponsored.length > 0" v-for="(elem, index) in filteredTeachersSponsored" :detailsTeachers="elem" :key="'card-' + index" />
       </div>
@@ -195,6 +195,7 @@ export default {
       margin-right: 1em;
       margin-bottom: 1em;
       display: flex;
+      
       align-items: center;
 
       &:last-child {
@@ -265,5 +266,7 @@ export default {
   }
 
 }
+
+
 </style>
   
