@@ -2,7 +2,7 @@
     <div class="container_single_card ">
         <div class="messagebox">
     <form @submit.prevent="getData()" id="form-message">
-        <h2>Chiedi informazioni:</h2>
+        <h2>Chiedi informazioni</h2>
         <div class="mb-3">
             <label for="name" class="form-label">Nome*</label>
             <input type="text" class="form-control" id="name" aria-describedby="emailHelp" name="name" v-model="params.name" required minlength="2">
@@ -29,7 +29,7 @@
 
     <div class="reviewbox">
     <form @submit.prevent="getDataReviews()" id="form-review">
-        <h2>Lascia una recensione: </h2>
+        <h2>Lascia una recensione </h2>
         <div class="mb-3">
             <label for="name" class="form-label">Nome*</label>
             <input type="text" class="form-control" id="name-1" aria-describedby="emailHelp" v-model="review.name" required minlength="2">
