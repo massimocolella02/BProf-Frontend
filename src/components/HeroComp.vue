@@ -32,11 +32,7 @@
     </div>
 
     <swiper
-      ref="mySwiper"
-      :slidesPerView="1"
-      :spaceBetween="10"
-      :pagination="{ clickable: true }"
-      :breakpoints="{
+      ref="mySwiper" :slidesPerView="1" :spaceBetween="10" :pagination="{ clickable: true }" :breakpoints="{
         '480': {
           slidesPerView: 1,
           spaceBetween: 10
