@@ -15,7 +15,7 @@
                         <span class="label_content">Curriculum</span>
                         <div class="wrap_xtr">
                             <a class="content_sub" v-if="elem.cv !== null" target="_blank"
-                                :href="`http://127.0.0.1:8000/storage/${elem.cv}`">Guarda ora</a>
+                                :href="`http://127.0.0.1:8000/storage/${elem.cv}`">Guardamiiii ora</a>
                             <p class="content_sub" v-if="elem.cv === null">No</p>
                         </div>
                     </div>
