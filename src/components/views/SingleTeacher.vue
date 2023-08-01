@@ -14,7 +14,7 @@
                     <div class="container_row">
                         <span class="label_content">Curriculum</span>
                         <div class="wrap_xtr">
-                            <a class="content_sub" v-if="elem.cv !== null" target="_blank"
+                            <a class="content_sub link_watch" v-if="elem.cv !== null" target="_blank"
                                 :href="`http://127.0.0.1:8000/storage/${elem.cv}`">Guarda ora</a>
                             <p class="content_sub" v-if="elem.cv === null">No</p>
                         </div>
@@ -136,7 +136,7 @@
                         <div class="container_row">
                             <span class="label_content">Curriculum</span>
                             <div class="wrap_xtr">
-                                <a class="content_sub" v-if="elem.cv !== null" target="_blank"
+                                <a class="content_sub link_watch" v-if="elem.cv !== null" target="_blank"
                                     :href="`http://127.0.0.1:8000/storage/${elem.cv}`">Guarda ora</a>
                                 <p class="content_sub" v-if="elem.cv === null">No</p>
                             </div>
@@ -219,6 +219,13 @@ export default {
     margin-top: 3em;
     display: flex;
     justify-content: space-between;
+
+    .link_watch{
+        color: #0091ff !important;
+            &:hover{
+                text-decoration: underline !important;
+            }
+    }
 
     @media only screen and (max-width: 1050px) {
         flex-direction: column;
