@@ -8,19 +8,19 @@ const routes = [
         path: '/',
         name: 'Home',
         component: HomeView,
-        meta: { title: "BProf - Home" }
+        meta: { title: "BProf" }
     },
     {
         path: '/teachers',
         name: 'Teacher',
         component: TeacherSection,
-        meta: { title: "BProf - Teachers" }
+        meta: { title: "BProf - Professori" }
     },
     {
         path: '/teachers/:id',
         name: 'single-teacher',
         component: SingleTeacher,
-        meta: { title: "BProf - Teacher" }
+        meta: { title: "BProf - Professore" }
     },
 ];
 
