@@ -139,11 +139,21 @@ export default {
 }
 
 .messagebox{
-    width: calc(100% / 2 - 10%)
+    width: calc(100% / 2 - 5%);
+    margin-bottom: 1rem;
 }
 
 .reviewbox{
-    width: calc(100% / 2 - 10%)
+    width: calc(100% / 2 - 5%);
+    margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 900px) {
+    .messagebox, .reviewbox {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 .btn_reg_no{
