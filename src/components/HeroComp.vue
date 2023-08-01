@@ -25,62 +25,72 @@
       </div>
     </div>
   </div>
+
   <div class="container_slider mt-5 mb-5">
     <div class="container_heading d-flex justify-content-center">
       <h1 class="heading">Professori in evidenza</h1>
     </div>
-    <swiper :slidesPerView="1" :spaceBetween="10" :pagination="{ clickable: true, }" :breakpoints="{
-      '480': {
-        slidesPerView: 1,
-        spaceBetween: 10,
-      },
-      '640': {
-        slidesPerView: 2,
-        spaceBetween: 20,
-      },
-      '768': {
-        slidesPerView: 3,
-        spaceBetween: 40,
-      },
-    }" :modules="modules" class="mySwiper">
+
+    <swiper
+      ref="mySwiper"
+      :slidesPerView="1"
+      :spaceBetween="10"
+      :pagination="{ clickable: true }"
+      :breakpoints="{
+        '480': {
+          slidesPerView: 1,
+          spaceBetween: 10
+        },
+        '640': {
+          slidesPerView: 2,
+          spaceBetween: 20
+        },
+        '768': {
+          slidesPerView: 3,
+          spaceBetween: 40
+        }
+      }"
+      :modules="modules"
+      :autoplay="{ delay: 4000, disableOnInteraction: false }"
+      class="mySwiper">
+
       <swiper-slide v-for="(elem, index) in store.sponsoredTeachers" :key="index">
 
         <SingleCardComp :detailsTeachers="elem" :key="'card-' + index" />
 
       </swiper-slide>
     </swiper>
+
   </div>
+
 </template>
 <script>
 import axios from 'axios';
 import { store } from '../storing/store';
-
 import SingleCardComp from './singlecardcomp.vue';
-
 import { Swiper, SwiperSlide } from 'swiper/vue';
-
 import 'swiper/css';
-
-import { Pagination } from 'swiper/modules';
+import { Pagination, Autoplay } from 'swiper/modules';
 
 export default {
   name: 'HeroComp',
   components: {
     Swiper,
     SwiperSlide,
-    SingleCardComp
+    SingleCardComp,
   },
   data() {
     return {
       store,
       subjects: '',
-      searchBar: "",
+      searchBar: '',
       dpdMenuVisible: false,
-    }
+    };
   },
   setup() {
     return {
-      modules: [Pagination],
+      modules: [Pagination, Autoplay],
+      loop: true,
     };
   },
   methods: {
@@ -91,19 +101,19 @@ export default {
       this.dpdMenuVisible = false;
     },
     callSubjects() {
-      axios.get('http://127.0.0.1:8000/api/subjects').then(res => {
+      axios.get('http://127.0.0.1:8000/api/subjects').then((res) => {
         this.subjects = res.data.results;
-      })
+      });
     },
     changeSub(i) {
       store.selectedSubject = i;
     },
     callSponsor() {
-      axios.get('http://127.0.0.1:8000/api/sponsor').then(res => {
+      axios.get('http://127.0.0.1:8000/api/sponsor').then((res) => {
         store.sponsoredTeachers = res.data.data;
         console.log(res.data.data);
-      })
-    }
+      });
+    },
   },
   created() {
     this.callSubjects();
@@ -111,7 +121,6 @@ export default {
   },
   computed: {
     filteredSubjects() {
-      // Utilizza il metodo filter per ottenere solo gli elementi che corrispondono alla ricerca
       return this.subjects.filter((elem) =>
         elem.name.toLowerCase().includes(this.searchBar.toLowerCase())
       );
