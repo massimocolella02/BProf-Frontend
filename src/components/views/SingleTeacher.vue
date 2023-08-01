@@ -23,7 +23,7 @@
                         <span class="label_content">Tariffa oraria</span>
                         <div class="wrap_xtr">
                             <span class="content_sub" v-if="elem.price >= 1">{{ elem.price }}€</span>
-                            <span class="content_sub" v-else-if="elem.price === 0">Gratis</span>
+                            <span class="content_sub" v-else-if="elem.price === 0.00">Gratis</span>
                         </div>
                     </div>
                 </div>
