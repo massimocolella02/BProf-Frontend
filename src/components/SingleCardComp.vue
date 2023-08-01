@@ -91,6 +91,11 @@ a {
             font-size: .8rem;
             font-weight: 400;
             margin-bottom: .3vw;
+            display: -webkit-box;
+    -webkit-line-clamp: 5; /* Number of lines to show */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
         }
 
         .container_rating_sub {
