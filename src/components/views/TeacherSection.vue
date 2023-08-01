@@ -32,7 +32,7 @@
     <div class="mb-2">
       
       <h2 class="evi" v-if="filteredTeachersSponsored.length > 0">Professori in evidenza</h2>
-      <div class="container_all_spon">
+      <div class="container_all_spon" v-if="filteredTeachersSponsored.length > 0"> 
         <SingleCardComp v-if="filteredTeachersSponsored.length > 0" v-for="(elem, index) in filteredTeachersSponsored" :detailsTeachers="elem" :key="'card-' + index" />
       </div>
     </div>
