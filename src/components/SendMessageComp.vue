@@ -21,7 +21,7 @@
     </form>
 
     <div id="messageSent" hidden>
-        <h2>Messaggio inviato con successo</h2>
+        <h2 style="color: #89CE94">Messaggio inviato con successo</h2>
     </div>  
     </div>
 
@@ -52,7 +52,7 @@
     </form>
 
     <div id="reviewSent" hidden>
-        <h2>Recensione inviata con successo</h2>
+        <h2 style="color: #89CE94">Recensione inviata con successo</h2>
     </div> 
     </div>
     </div>
